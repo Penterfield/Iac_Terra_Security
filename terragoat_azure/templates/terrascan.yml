@@ -1,0 +1,13 @@
+steps:
+- script: |
+    curl --location https://github.com/accurics/terrascan/releases/download/v1.3.2/terrascan_1.3.2_Linux_x86_64.tar.gz --output terrascan.tar.gz
+    tar -xvf terrascan.tar.gz
+    sudo install terrascan /usr/local/bin    
+  displayName: 'Install Terrascan'
+
+- script: |
+    cd $(terraformWorkingDirectory)
+    terrascan scan -t azure 
+  displayName: 'Run Terrascan'   
+ 
+  
