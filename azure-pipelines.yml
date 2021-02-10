@@ -2,7 +2,6 @@ trigger:
 - aws
 
 variables:
-  SNYK_TOKEN: $(Snyk-Token)
   terraformWorkingDirectory: '$(System.DefaultWorkingDirectory)/terragoat_aws'
 
 pool:
