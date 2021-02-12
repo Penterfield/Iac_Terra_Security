@@ -8,6 +8,7 @@ steps:
 - script: |
     cd $(terraformWorkingDirectory)
     terrascan scan -t azure 
+  continueOnError: true
   displayName: 'Run Terrascan'   
  
   

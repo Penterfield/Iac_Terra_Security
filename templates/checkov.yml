@@ -3,6 +3,7 @@ steps:
     mkdir CheckovReport
     docker pull bridgecrew/checkov
     docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf --output junitxml > $(System.DefaultWorkingDirectory)/CheckovReport/Checkov-Report.xml
+  continueOnError: true
   displayName: 'Checkov Static Code Analysis'
   
 - task: PublishTestResults@2
