@@ -7,7 +7,7 @@ steps:
 
 - script: |
     cd $(terraformWorkingDirectory)
-    terrascan scan -t azure 
+    terrascan scan -t aws 
   continueOnError: true
   displayName: 'Run Terrascan'   
  
