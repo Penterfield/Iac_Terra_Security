@@ -2,7 +2,7 @@ steps:
 - script: |
     mkdir CheckovReport
     docker pull bridgecrew/checkov
-    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf
+    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf -o cli
   continueOnError: true
   displayName: 'Checkov Console output'
   
