@@ -13,8 +13,7 @@ steps:
   displayName: Snyk Authentication
   
 - script: |
-    snyk iac test --severity-threshold=medium 
-    snyk-to-html -i snyk/dependencyVulns.json -o snyk/dependencyVulns.html
+    snyk iac test --severity-threshold=medium --json | snyk-to-html -o snyk_iac_results.html
   continueOnError: true
   displayName: Snyk IaC Security Scan 
 
