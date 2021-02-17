@@ -14,6 +14,7 @@ steps:
   
 - script: |
     snyk iac test --severity-threshold=medium 
+    snyk-to-html -i snyk/dependencyVulns.json -o snyk/dependencyVulns.html
   continueOnError: true
   displayName: Snyk IaC Security Scan 
 
