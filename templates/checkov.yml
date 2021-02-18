@@ -28,7 +28,7 @@ steps:
     pip3 install checkov
   displayName: 'Install checkov'
   
-- script: which checkov
+- bash: which checkov && whereis checkov
   displayName: 'Security test with Checkov'
   
 #- script: |
