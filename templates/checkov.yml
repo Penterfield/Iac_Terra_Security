@@ -22,7 +22,7 @@ steps:
 
 - script: |
     mkdir CheckovReport
-    sudo apt install python3-pip
+    pip install -U pip setuptools 
     pip3 install -U checkov
     checkov -d $(System.DefaultWorkingDirectory) --output cli
   continueOnError: true
@@ -30,7 +30,7 @@ steps:
   
 - script: |
     mkdir CheckovReport
-    sudo apt install python3-pip
+    pip install -U pip setuptools 
     pip3 install -U checkov
     checkov -d $(System.DefaultWorkingDirectory) --output junitxml > $(System.DefaultWorkingDirectory)/CheckovReport/Checkov-Report.xml 
   continueOnError: true
