@@ -22,7 +22,7 @@ steps:
 
 - script: |
     mkdir CheckovReport
-    apt-get install python3-setuptools
+    sudo apt-get install python3-setuptools
     pip3 install -U checkov
     checkov -d $(System.DefaultWorkingDirectory) --output cli
   continueOnError: true
