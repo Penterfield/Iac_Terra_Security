@@ -21,7 +21,7 @@ steps:
 # Run checkov pip install (Console output)
 
 - script: |
-    python -m pip install --upgrade pip setuptools wheel
+    pip3 install --upgrade pip && pip3 install --upgrade setuptools
   displayName: 'Install pip'
 
 - script: |
