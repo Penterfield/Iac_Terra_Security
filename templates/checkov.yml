@@ -22,13 +22,13 @@ steps:
 
 - script: |
     pip3 install --upgrade pip && pip3 install --upgrade setuptools
-  displayName: 'Install pip'
-
-- script: |
     pip3 install checkov
-  displayName: 'Install checkov'
+  displayName: 'Install pip and checkov'
   
-- bash: which checkov && whereis checkov
+- script: |
+    echo $(pwd)
+    echo $(which checkov)
+    echo $(whereis checkov)
   displayName: 'Security test with Checkov'
   
 #- script: |
