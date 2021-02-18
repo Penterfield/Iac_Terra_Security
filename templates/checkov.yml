@@ -1,17 +1,38 @@
 steps:
+
+# Run checkov via Docker Image (Console output)
+
+#- script: |
+#    mkdir CheckovReport
+#    docker pull bridgecrew/checkov
+#    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf -o cli
+#  continueOnError: true
+#  displayName: 'Checkov Console output'
+
+# Run checkov via Docker Image (Junit Published Report)
+
+#- script: |
+#    mkdir CheckovReport
+#    docker pull bridgecrew/checkov
+#    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf --output junitxml > $(System.DefaultWorkingDirectory)/CheckovReport/Checkov-Report.xml
+#  continueOnError: true
+#  displayName: 'Checkov JUnit Published Results'
+
+# Run checkov pip install (Console output)
+
 - script: |
     mkdir CheckovReport
-    docker pull bridgecrew/checkov
-    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf -o cli
+    pip install checkov
+    checkov -d $(System.DefaultWorkingDirectory) --output cli
   continueOnError: true
   displayName: 'Checkov Console output'
   
 - script: |
     mkdir CheckovReport
-    docker pull bridgecrew/checkov
-    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf --output junitxml > $(System.DefaultWorkingDirectory)/CheckovReport/Checkov-Report.xml
+    pip install checkov
+    checkov -d $(System.DefaultWorkingDirectory) --output junitxml > $(System.DefaultWorkingDirectory)/CheckovReport/Checkov-Report.xml 
   continueOnError: true
-  displayName: 'Checkov JUnit Published Results'
+  displayName: 'Checkov Junit Published Results'
   
 - task: PublishTestResults@2
   displayName: Publish Checkov Test Results

@@ -1,9 +1,6 @@
 trigger:
 - aws
 
-variables:
-  terraformWorkingDirectory: '$(System.DefaultWorkingDirectory)/terragoat_aws'
-
 pool:
   vmImage: 'ubuntu-latest'
   
