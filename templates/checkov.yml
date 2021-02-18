@@ -25,7 +25,7 @@ steps:
     pip3 install checkov
   displayName: 'Install pip and checkov'
   
-- script: |
+- bash: |
     echo $(pwd)
     echo $(which checkov)
     echo $(whereis checkov)
