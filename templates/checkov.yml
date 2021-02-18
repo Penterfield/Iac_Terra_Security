@@ -22,16 +22,16 @@ steps:
 
 - script: |
     mkdir CheckovReport
-    pip install -U pip setuptools 
-    pip3 install -U checkov
+    pip3 install --upgrade pip && pip3 install --upgrade setuptools
+    pip3 install checkov
     checkov -d $(System.DefaultWorkingDirectory) --output cli
   continueOnError: true
   displayName: 'Checkov Console output'
   
 - script: |
     mkdir CheckovReport
-    pip install -U pip setuptools 
-    pip3 install -U checkov
+    pip3 install --upgrade pip && pip3 install --upgrade setuptools
+    pip3 install checkov
     checkov -d $(System.DefaultWorkingDirectory) --output junitxml > $(System.DefaultWorkingDirectory)/CheckovReport/Checkov-Report.xml 
   continueOnError: true
   displayName: 'Checkov Junit Published Results'
