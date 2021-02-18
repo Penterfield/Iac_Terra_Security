@@ -25,10 +25,8 @@ steps:
     pip3 install checkov
   displayName: 'Install pip and checkov'
   
-- bash: |
-    echo $(pwd)
-    echo $(which checkov)
-    echo $(whereis checkov)
+- script: |
+    checkov -d $(System.DefaultWorkingDirectory) --output cli
   displayName: 'Security test with Checkov'
   
 #- script: |
