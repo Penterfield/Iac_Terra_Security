@@ -28,7 +28,7 @@ steps:
     pip3 install checkov
   displayName: 'Install checkov'
   
-- script: checkov -d ./$(System.DefaultWorkingDirectory) -o cli
+- script: which checkov
   displayName: 'Security test with Checkov'
   
 #- script: |
