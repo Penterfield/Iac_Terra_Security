@@ -26,7 +26,8 @@ steps:
     sudo add-apt-repository ppa:deadsnakes/ppa
     sudo apt install python3.7
     sudo apt install python3-pip
-    sudo python3.7 -m pip install -U checkov #to install or upgrade checkov)
+    sudo pip install --upgrade setuptools
+    sudo python3.7 -m pip install checkov
   displayName: 'Install pip and checkov'
   
 - script: |
