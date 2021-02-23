@@ -23,6 +23,7 @@ steps:
 - script: |
     sudo apt-get install python3-setuptools
     pip3 install checkov
+    pip3 list
   displayName: 'Install pip and checkov'
   continueOnError: true
   
