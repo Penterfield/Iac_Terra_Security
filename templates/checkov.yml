@@ -20,7 +20,7 @@ steps:
 
 # Run checkov pip install (Console output)
 
-- bash: 'whereis checkov'
+- bash: ls /bin/
 #   pip3 install --upgrade pip && pip3 install --upgrade setuptools
 #   pip3 install checkov
   displayName: 'Install pip and checkov'
