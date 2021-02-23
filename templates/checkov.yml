@@ -22,14 +22,12 @@ steps:
 
 - script: |
     sudo apt-get install python3-setuptools
-    pip3 install checkov
-    pip3 list
-    python3 -m site --user-base
+    pip3 install checkov 
   displayName: 'Install pip and checkov'
   continueOnError: true
   
 - script: |
-    checkov -d $(System.DefaultWorkingDirectory) --output cli
+    /home/$USER/.local/checkov -d $(System.DefaultWorkingDirectory) --output cli
   displayName: 'Security test with Checkov'
   
 #- script: |
