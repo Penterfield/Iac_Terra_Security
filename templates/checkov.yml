@@ -21,6 +21,7 @@ steps:
 # Run checkov pip install (Console output)
 
 - script: |
+    sudo apt-get install python3-setuptools
     pip3 install checkov
   displayName: 'Install pip and checkov'
   continueOnError: true
