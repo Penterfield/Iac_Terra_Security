@@ -31,6 +31,7 @@ steps:
     sudo apt-get install python-dev
     sudo python3.7 -m pip install checkov
   displayName: 'Install pip and checkov'
+  continueOnError: true
   
 - script: |
     checkov -d $(System.DefaultWorkingDirectory) --output cli
