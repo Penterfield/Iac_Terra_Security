@@ -21,7 +21,7 @@ steps:
 # Run checkov pip install (Console output)
 
 - script: |
-    sudo python3 -m pip install checkov
+    pip3 install checkov
   displayName: 'Install pip and checkov'
   continueOnError: true
   
