@@ -21,15 +21,7 @@ steps:
 # Run checkov pip install (Console output)
 
 - script: |
-    sudo apt update
-    sudo apt install software-properties-common
-    sudo add-apt-repository ppa:deadsnakes/ppa
-    sudo apt install python3.7
-    sudo apt install python3-pip
-    sudo pip install --upgrade pip
-    sudo apt-get install python-setuptools
-    sudo apt-get install python-dev
-    sudo python3.7 -m pip install checkov
+    sudo python3 -m pip install checkov
   displayName: 'Install pip and checkov'
   continueOnError: true
   
