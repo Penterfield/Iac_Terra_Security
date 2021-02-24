@@ -2,33 +2,33 @@ steps:
 
 # Run checkov via Docker Image (Console output)
 
-#- script: |
-#    mkdir CheckovReport
-#    docker pull bridgecrew/checkov
-#    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf -o cli
-#  continueOnError: true
-#  displayName: 'Checkov Console output'
+- script: |
+    mkdir CheckovReport
+    docker pull bridgecrew/checkov
+    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf -o cli
+  continueOnError: true
+  displayName: 'Checkov Console output'
 
 # Run checkov via Docker Image (Junit Published Report)
 
-#- script: |
-#    mkdir CheckovReport
-#    docker pull bridgecrew/checkov
-#    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf --output junitxml > $(System.DefaultWorkingDirectory)/CheckovReport/Checkov-Report.xml
-#  continueOnError: true
-#  displayName: 'Checkov JUnit Published Results'
+- script: |
+    mkdir CheckovReport
+    docker pull bridgecrew/checkov
+    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf --output junitxml > $(System.DefaultWorkingDirectory)/CheckovReport/Checkov-Report.xml
+  continueOnError: true
+  displayName: 'Checkov JUnit Published Results'
 
 # Run checkov pip install (Console output)
 
-- script: |
-    sudo apt-get install python3-setuptools
-    pip3 install checkov 
-  displayName: 'Install pip and checkov'
-  continueOnError: true
+#- script: |
+#    sudo apt-get install python3-setuptools
+#    pip3 install checkov 
+#  displayName: 'Install pip and checkov'
+#  continueOnError: true
   
-- script: |
-    /home/$USER/.local/checkov -d $(System.DefaultWorkingDirectory) --output cli
-  displayName: 'Security test with Checkov'
+#- script: |
+#    /home/$USER/.local/checkov -d $(System.DefaultWorkingDirectory) --output cli
+#  displayName: 'Security test with Checkov'
   
 #- script: |
 #    mkdir CheckovReport
@@ -37,26 +37,14 @@ steps:
 #  continueOnError: true
 #  displayName: 'Checkov Junit Published Results'
   
-#- task: PublishTestResults@2
-#  displayName: Publish Checkov Test Results
-#  condition: succeededorFailed()
-#  inputs:
-#    testResultsFormat: 'JUnit'
-#    testResultsFiles: '**/Checkov-Report.xml'
-#    searchFolder: '$(System.DefaultWorkingDirectory)/CheckovReport'
-#    mergeTestResults: false
-#    testRunTitle: Checkov Scan
-#    failTaskOnFailedTests: false
-#    publishRunAttachments: true
-
-
-
-
- 
-
-
-
- 
-
-
-
+- task: PublishTestResults@2
+  displayName: Publish Checkov Test Results
+  condition: succeededorFailed()
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/Checkov-Report.xml'
+    searchFolder: '$(System.DefaultWorkingDirectory)/CheckovReport'
+    mergeTestResults: false
+    testRunTitle: Checkov Scan
+    failTaskOnFailedTests: false
+    publishRunAttachments: true
