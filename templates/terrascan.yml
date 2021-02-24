@@ -6,7 +6,7 @@ steps:
   displayName: 'Install Terrascan'
 
 - script: |
-    cd $(terraformWorkingDirectory)
+    cd $(System.DefaultWorkingDirectory)
     terrascan scan -t aws 
   continueOnError: true
   displayName: 'Run Terrascan'   
