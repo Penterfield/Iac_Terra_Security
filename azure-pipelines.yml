@@ -11,14 +11,14 @@ stages:
      - job: Checkov
        steps:
        - template: templates/checkov.yml
-      - job: TFSec
-        steps:
-        - template: templates/tfsec.yml
-      - job: Snyk_IaC
-        steps:
-        - template: templates/snyk_iac.yml
-      - job: Terrascan
-        steps:
-        - template: templates/terrascan.yml
+     - job: TFSec
+       steps:
+       - template: templates/tfsec.yml
+     - job: Snyk_IaC
+       steps:
+       - template: templates/snyk_iac.yml
+     - job: Terrascan
+       steps:
+       - template: templates/terrascan.yml
       
     
