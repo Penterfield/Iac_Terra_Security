@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage ('PIP Install') {
       steps {
-        sh ' pip install virtualenv'
+        sh 'pip3 install virtualenv'
         sh 'virtualenv checkov_env && source checkov_env/bin/activate'
         sh 'pip3 install checkov'
       }
