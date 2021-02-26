@@ -9,7 +9,7 @@ pipeline {
     stage ('Checkov IaC Testing') {
       steps {
         echo 'Running scans against files' 
-        sh '/var/lib/jenkins/.local/bin/checkov -d .'
+        sh '/var/lib/jenkins/.local/bin/checkov -d . --exit-code 1'
       post {
           always{
               archiveArtifacts artifacts: 'checkovResults.json'
