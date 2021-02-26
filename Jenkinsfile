@@ -3,9 +3,9 @@ pipeline {
   stages {
     stage ('PIP Install') {
       steps {
-        sh 'pip3 install virtualenv'
-        sh '/usr/local/bin/virtualenv checkov_env && source checkov_env/bin/activate'
-        sh 'pip3 install checkov --user'
+        //sh 'pip3 install virtualenv'
+        //sh '/usr/local/bin/virtualenv checkov_env && source checkov_env/bin/activate'
+        sh 'pip3 install checkov --user && whereis checkov'
       }
     }
     stage ('Checkov IaC Testing') {
