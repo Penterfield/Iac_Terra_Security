@@ -5,7 +5,7 @@ pipeline {
       steps {
         sh 'pip3 install virtualenv'
         sh '/usr/local/bin/virtualenv checkov_env && source checkov_env/bin/activate'
-        sh 'pip3 install checkov --user && which checkov'
+        sh 'pip3 install checkov --user && cp /var/lib/jenkins/.local/bin/checkov /usr/bin/'
       }
     }
     stage ('Checkov IaC Testing') {
