@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage ('PIP Install') {
       steps {
-        sh 'virtualenv venv && . venv/bin/activate && pip3 install checkov'
+        sh 'pip3 install virtualenv && Virtualenv checkov_env && source venv/bin/activate'
+        sh 'pip3 install checkov'
       }
     }
     stage ('Checkov IaC Testing') {
