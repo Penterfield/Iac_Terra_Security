@@ -1,11 +1,6 @@
 pipeline {
   agent any
   stages {
-    stage('Cloning Git') {
-      steps {
-        git 'https://github.com/Penterfield/Iac_Terra_Security.git'
-      }
-    }
     stage ('PIP Install') {
       steps {
         sh 'pip3 install checkov'
