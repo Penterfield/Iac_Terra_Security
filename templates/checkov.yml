@@ -2,29 +2,30 @@ steps:
 
 # Run checkov via Docker Image (Console output)
 
-- script: |
-    mkdir CheckovReport
-    docker pull bridgecrew/checkov
-    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf -o cli
-  continueOnError: true
-  displayName: 'Checkov Console output'
+#- script: |
+#    mkdir CheckovReport
+#    docker pull bridgecrew/checkov
+#    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf -o cli
+#  continueOnError: true
+#  displayName: 'Checkov Console output'
 
 # Run checkov via Docker Image (Junit Published Report)
 
-- script: |
-    mkdir CheckovReport
-    docker pull bridgecrew/checkov
-    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf --output junitxml > $(System.DefaultWorkingDirectory)/CheckovReport/Checkov-Report.xml
-  continueOnError: true
-  displayName: 'Checkov JUnit Published Results'
+#- script: |
+#    mkdir CheckovReport
+#    docker pull bridgecrew/checkov
+#    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf --output junitxml > $(System.DefaultWorkingDirectory)/CheckovReport/Checkov-Report.xml
+#  continueOnError: true
+#  displayName: 'Checkov JUnit Published Results'
 
 # Run checkov pip install (Console output)
 
-#- script: |
-#    sudo apt-get install python3-setuptools
-#    pip3 install checkov 
-#  displayName: 'Install pip and checkov'
-#  continueOnError: true
+- script: |
+#   sudo apt-get install python3-setuptools
+    pip3 install checkov --user
+    which checkov
+  displayName: 'Install pip and checkov'
+  continueOnError: true
   
 #- script: |
 #    /home/$USER/.local/checkov -d $(System.DefaultWorkingDirectory) --output cli
