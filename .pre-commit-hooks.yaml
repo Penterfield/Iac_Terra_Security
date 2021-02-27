@@ -1,0 +1,10 @@
+- id: checkov
+  name: Checkov
+  description: Runs checkov on Terraform templates.
+  entry: checkov -d .
+  language: python
+  pass_filenames: false
+  always_run: false
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
+  require_serial: true
