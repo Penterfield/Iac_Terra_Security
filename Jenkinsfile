@@ -1,21 +1,29 @@
 pipeline {
-  agent any
-  stages {
-    stage ('PIP Install') {
-      steps {
-        sh 'pip3 install checkov --user'
-      }
-    }
-    stage ('Checkov IaC Testing') {
-      steps {
-        echo 'Running scans against files' 
-        sh '/var/lib/jenkins/.local/bin/checkov -d . || exit 1'
-      post {
-          always{
-              archiveArtifacts artifacts: 'checkovResults.json'
-          }
+    agent {
+        docker {
+            image 'kennethreitz/pipenv:latest'
+            args '-u root --privileged -v /var/run/docker.sock:/var/run/docker.sock'
+            label 'agent'
         }
-      }
-    }   
-  }
+    }
+    stages {
+        stage('test') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:bridgecrewio/checkov.git']]])
+                script {
+                    sh "pipenv install"
+                    sh "pipenv run pip install checkov"
+                    sh "pipenv run checkov --directory tests/terraform/runner/resources/example -o junitxml > result.xml || true"
+                    junit "result.xml"
+                }
+
+
+            }
+        }
+    }
+    options {
+        preserveStashes()
+        timestamps()
+        ansiColor('xterm')
+    }
 }
