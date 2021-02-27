@@ -21,7 +21,7 @@ steps:
 # Run checkov pip install (Console output)
 
 - script: |
-    ppip3 install --upgrade pip && pip3 install --upgrade setuptools && pip3 install checkov --user
+    pip3 install --upgrade pip && pip3 install --upgrade setuptools && pip3 install checkov --user
     which checkov
   displayName: 'Install pip and checkov'
   continueOnError: true
