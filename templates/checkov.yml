@@ -26,7 +26,8 @@ steps:
   continueOnError: true
   
 - script: |
-    /home/$USER/.local/checkov -d $(System.DefaultWorkingDirectory) --output cli
+    which checkov
+#    /home/$USER/.local/checkov -d $(System.DefaultWorkingDirectory) --output cli
   displayName: 'Security test with Checkov'
   
 #- script: |
