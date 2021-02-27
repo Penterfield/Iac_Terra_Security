@@ -22,13 +22,12 @@ steps:
 
 - script: |
     pip3 install --upgrade pip && pip3 install --upgrade setuptools && pip3 install checkov --user
-    which checkov
   displayName: 'Install pip and checkov'
   continueOnError: true
   
-#- script: |
-#    /home/$USER/.local/checkov -d $(System.DefaultWorkingDirectory) --output cli
-#  displayName: 'Security test with Checkov'
+- script: |
+    /home/$USER/.local/checkov -d $(System.DefaultWorkingDirectory) --output cli
+  displayName: 'Security test with Checkov'
   
 #- script: |
 #    mkdir CheckovReport
