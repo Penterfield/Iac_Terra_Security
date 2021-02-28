@@ -21,9 +21,5 @@ pipeline {
             }
         }
     }
-    options {
-        preserveStashes()
-        timestamps()
-        ansiColor('xterm')
-    }
+
 }
