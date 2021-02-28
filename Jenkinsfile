@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('test') {
             steps {
-                //checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:bridgecrewio/checkov.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: 'aws']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Penterfield/Iac_Terra_Security.git']]])
                 script {
                     sh "pipenv install"
                     sh "pipenv run pip install checkov"
