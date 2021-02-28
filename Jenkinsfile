@@ -13,7 +13,7 @@ pipeline {
                 script {
                     sh "pipenv install"
                     sh "pipenv run pip install checkov"
-                    sh "pipenv run checkov --directory tests/terraform/runner/resources/example -o junitxml > result.xml || true"
+                    sh "pipenv run checkov --directory . -o junitxml > result.xml || true"
                     junit "result.xml"
                 }
 
