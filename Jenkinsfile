@@ -7,7 +7,7 @@ pipeline {
         }
     }
     stages {
-        stage('test') {
+        stage('Checkov Security Scan') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: 'aws']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Penterfield/Iac_Terra_Security.git']]])
                 script {

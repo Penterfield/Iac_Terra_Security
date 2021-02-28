@@ -21,7 +21,11 @@ steps:
 # Run checkov pip install (Console output)
 
 - script: |
-    pip3 install --upgrade pip && pip3 install --upgrade setuptools && pip3 install checkov --user
+#   pip3 install --upgrade pip && pip3 install --upgrade setuptools && pip3 install checkov --user
+    docker run -u root --privileged -v -v /var/run/docker.sock:/var/run/docker.sock kennethreitz/pipenv:latest
+    pipenv install
+    pipenv run pip install checkov
+    pipenv run checkov --directory .
   displayName: 'Install pip and checkov'
   continueOnError: true
   
