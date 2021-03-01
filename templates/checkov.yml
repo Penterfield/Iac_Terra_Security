@@ -2,43 +2,22 @@ steps:
 
 # Run checkov via Docker Image (Console output)
 
-#- script: |
-#    mkdir CheckovReport
-#    docker pull bridgecrew/checkov
-#    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf -o cli
-#  continueOnError: true
-#  displayName: 'Checkov Console output'
+- script: |
+    mkdir CheckovReport
+    docker pull bridgecrew/checkov
+    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf -o cli
+  continueOnError: true
+  displayName: 'Checkov Console output'
 
 # Run checkov via Docker Image (Junit Published Report)
 
-#- script: |
-#    mkdir CheckovReport
-#    docker pull bridgecrew/checkov
-#    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf --output junitxml > $(System.DefaultWorkingDirectory)/CheckovReport/Checkov-Report.xml
-#  continueOnError: true
-#  displayName: 'Checkov JUnit Published Results'
-
-# Run checkov pip install (Console output)
-
 - script: |
-    docker run -u root --privileged -v /var/run/docker.sock:/var/run/docker.sock kennethreitz/pipenv:latest
-    pipenv install
-    pipenv run pip install checkov
-    pipenv run checkov --directory .
-  displayName: 'Install pip and checkov'
+    mkdir CheckovReport
+    docker pull bridgecrew/checkov
+    docker run --volume $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf --output junitxml > $(System.DefaultWorkingDirectory)/CheckovReport/Checkov-Report.xml
   continueOnError: true
-  
-- script: |
-    which checkov
-#    /home/$USER/.local/checkov -d $(System.DefaultWorkingDirectory) --output cli
-  displayName: 'Security test with Checkov'
-  
-#- script: |
-#    mkdir CheckovReport
-#    pip3 install --upgrade pip && pip3 install --upgrade setuptools && pip3 install checkov
-#    checkov -d $(System.DefaultWorkingDirectory) --output junitxml > $(System.DefaultWorkingDirectory)/CheckovReport/Checkov-Report.xml 
-#  continueOnError: true
-#  displayName: 'Checkov Junit Published Results'
+  displayName: 'Checkov JUnit Published Results'
+
   
 - task: PublishTestResults@2
   displayName: Publish Checkov Test Results
