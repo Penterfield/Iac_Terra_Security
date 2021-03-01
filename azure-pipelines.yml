@@ -1,8 +1,4 @@
 trigger:
-  branches:
-    exclude:
-    - *
-pr:
 - aws
 
 pool:
