@@ -13,8 +13,7 @@ pipeline {
                 script {
                     sh "pipenv install"
                     sh "pipenv run pip install checkov"
-                    sh "pipenv run checkov --directory . -o junitxml > result.xml || true"
-                    junit "result.xml"
+                    sh "pipenv run checkov --directory . -o cli || true"
                 }
 
 
