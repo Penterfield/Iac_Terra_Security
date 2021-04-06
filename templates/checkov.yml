@@ -22,6 +22,12 @@ steps:
   inputs:
     targetPath: $(System.DefaultWorkingDirectory)/CheckovReport
     artifactName: CheckovResults
+
+# PROVIDE PR FEEDBACK
+- template: templates/azure-pipelines-template-github-feedback.yml  # Template reference
+  parameters:
+    name: checkov-scan
+    state: $(CheckovState)
   
 # Run checkov via CLI (Junit Report output)
 

@@ -1,5 +1,14 @@
+# Don't do any CI builds - this pipeline is purely for PR's
 trigger:
+  branches:
+    exclude:
+    -  '*'
+pr:
 - aws
+
+variables:
+- name: GitHubStatusApiUrl
+  value: https://api.github.com/repos/Penterfield/Checkov_Template
 
 pool:
   vmImage: 'ubuntu-latest'
