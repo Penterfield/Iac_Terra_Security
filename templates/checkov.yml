@@ -18,9 +18,9 @@ steps:
   displayName: 'Scan with Checkov Console Output'
 
 # PROVIDE BUILD FEEDBACK
-- task: PublishBuildArtifacts@1
+- task: PublishPipelineArtifact@1
   inputs:
-    pathToPublish: checkov
+    targetPath: $(System.DefaultWorkingDirectory)/CheckovReport
     artifactName: CheckovResults
   
 # Run checkov via CLI (Junit Report output)
