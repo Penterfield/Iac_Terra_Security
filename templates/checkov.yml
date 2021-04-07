@@ -24,7 +24,7 @@ steps:
     artifactName: CheckovResults
 
 # PROVIDE PR FEEDBACK
-- template: azure-pipelines-template-github-feedback.yml  # Template reference
+- template: azure-pipelines-github-feedback-template.yml  # Template reference
   parameters:
     name: checkov-test
     state: $(CheckovState)
