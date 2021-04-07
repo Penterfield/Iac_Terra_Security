@@ -30,7 +30,6 @@ steps:
 # PROVIDE PR FEEDBACK
 - template: azure-pipelines-github-feedback-template.yml  # Template reference
   parameters:
-    name: checkov-test
     state: $(CheckovState)
   
 # Run checkov via CLI (Junit Report output)
