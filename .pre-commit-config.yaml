@@ -1,0 +1,5 @@
+repos:
+- repo: https://github.com/bridgecrewio/checkov.git
+  rev: 1.0.817
+  hooks:
+    - id: checkov

@@ -1,0 +1,21 @@
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: Install NodeJS
+  
+- script: |
+    npm install -g snyk snyk-to-html
+  displayName: Install Snyk CLI
+
+- script: |
+    snyk config set api=$(SNYK_TOKEN)
+  displayName: Snyk Authentication
+  
+- script: |
+    snyk iac test --severity-threshold=medium
+  continueOnError: true
+  displayName: Snyk IaC Security Scan 
+
+
+ 
