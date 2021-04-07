@@ -6,10 +6,6 @@ trigger:
 pr:
 - master
 
-variables:
-- name: GitHubStatusApiUrl
-  value: https://api.github.com/repos/Penterfield/Iac_Terra_Security
-
 pool:
   vmImage: 'ubuntu-latest'
   
