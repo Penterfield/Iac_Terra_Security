@@ -13,21 +13,37 @@ variables:
 pool:
   vmImage: 'ubuntu-latest'
   
-stages:
+steps:
 
-  - stage: Scan
-    jobs:
-     - job: Checkov
-       steps:
-       - template: templates/checkov.yml
-#     - job: TFSec
-#       steps:
-#       - template: templates/tfsec.yml
-#     - job: Snyk_IaC
-#       steps:
-#       - template: templates/snyk_iac.yml
-#     - job: Terrascan
-#       steps:
-#       - template: templates/terrascan.yml
-      
+# configure the version of python to use 
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.8'
+  displayName: 'Install Python 3.8'
+
+# install python packages for checkov
+- script: pip install checkov
+  displayName: 'Install the Checkov CLI'
+  
+# run checkov against files in working directory
+- bash: | 
+    checkov -d $(System.DefaultWorkingDirectory) 
+    checkov -d $(System.DefaultWorkingDirectory) --output json > $(Build.ArtifactStagingDirectory)/Checkov-Report.json
+#     exitCode=$?
+#     [[ $exitCode = 0 ]] && state="success" || state="failure"
+#     echo "##vso[task.setvariable variable=CheckovState;]$state"
+#     exit $exitCode
+  displayName: 'Checkov Scan'
+  continueOnError: true
+
+# PROVIDE BUILD FEEDBACK
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: CheckovResults
+
+# PROVIDE PR FEEDBACK
+- template: azure-pipelines-github-feedback-template.yml  # Template reference
+  parameters:
+    state: $(CheckovState)
     
