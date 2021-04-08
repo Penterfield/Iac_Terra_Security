@@ -1,4 +1,0 @@
-- template: azure-pipelines-template-github-feedback.yml  # Template reference
-  parameters:
-    name: checkov-tests
-    state: $(CheckovState)
