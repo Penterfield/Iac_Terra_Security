@@ -12,6 +12,7 @@ steps:
   
 # run checkov against files in working directory
 - bash: | 
+    checkov -d $(System.DefaultWorkingDirectory) 
     checkov -d $(System.DefaultWorkingDirectory) --output json > $(Build.ArtifactStagingDirectory)/Checkov-Report.json
 #     exitCode=$?
 #     [[ $exitCode = 0 ]] && state="success" || state="failure"
