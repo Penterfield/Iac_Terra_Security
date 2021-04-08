@@ -6,6 +6,7 @@ trigger:
 pr:
 - master
 
+# GitHub status API endpoint, update with your Github repo details
 variables:
 - name: GitHubStatusApiUrl
   value: https://api.github.com/repos/Penterfield/Iac_Terra_Security
@@ -23,7 +24,7 @@ steps:
 
 # install python packages for checkov
 - script: pip install checkov
-  displayName: 'Install the Checkov CLI'
+  displayName: 'Install Checkov CLI'
   
 # run checkov against files in working directory
 - bash: | 
@@ -34,7 +35,7 @@ steps:
 #     echo "##vso[task.setvariable variable=CheckovState;]$state"
 #     exit $exitCode
   displayName: 'Checkov Scan'
-  continueOnError: true
+  continueOnError: false
 
 # PROVIDE BUILD FEEDBACK
 - task: PublishBuildArtifacts@1
