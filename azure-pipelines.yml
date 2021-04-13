@@ -30,10 +30,10 @@ steps:
 - bash: | 
     checkov -d $(System.DefaultWorkingDirectory) 
     checkov -d $(System.DefaultWorkingDirectory) --output json > $(Build.ArtifactStagingDirectory)/Checkov-Report.json
-#     exitCode=$?
-#     [[ $exitCode = 0 ]] && state="success" || state="failure"
-#     echo "##vso[task.setvariable variable=CheckovState;]$state"
-#     exit $exitCode
+     exitCode=$?
+     [[ $exitCode = 0 ]] && state="success" || state="failure"
+     echo "##vso[task.setvariable variable=CheckovState;]$state"
+     exit $exitCode
   displayName: 'Checkov Scan'
   continueOnError: false
 
@@ -47,4 +47,3 @@ steps:
 - template: templates/azure-pipelines-github-feedback-template.yml  # Template reference
   parameters:
     state: $(CheckovState)
-    
