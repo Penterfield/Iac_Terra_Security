@@ -35,7 +35,7 @@ steps:
     echo "##vso[task.setvariable variable=CheckovState;]$state"
     exit $exitCode
   displayName: 'Checkov Scan'
-  continueOnError: false
+  continueOnError: true
 
 # PROVIDE BUILD FEEDBACK
 - task: PublishBuildArtifacts@1
